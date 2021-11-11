@@ -1,7 +1,6 @@
 import React,{Component} from 'react'
 import {SafeAreaView,View, Text,StyleSheet,FlatList,useState,DeviceEventEmitter,Image} from 'react-native'
-import CampfireImage from '../../assets/cartoon-campfire.jpeg'
-import marshImage from '../../assets/marshmellow.png'
+
 
 export default() => {
     return(

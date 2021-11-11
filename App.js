@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React,{Component} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import PostList from './screens/home-post';
 import WelcomeScreen from './screens/welcome/index'
 //import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 //import { NavigationContainer } from '@react-navigation/native';
@@ -24,7 +25,8 @@ export default App
 export default function App() {
   return (
     <View style={styles.container}>
-      <WelcomeScreen/>
+      
+      <PostList/>
       <StatusBar style="auto" />
     </View>
   );
