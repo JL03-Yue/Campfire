@@ -1,5 +1,8 @@
 import React, { Component, useState,useEffect } from 'react'
 import { SafeAreaView, View, Text, StyleSheet, FlatList, DeviceEventEmitter, Image, TextInput } from 'react-native'
+import Post from '../../component/post/postList'
+import PostSource from '../../component/post/postSource'
+
 
 const PostList = () => {
     const [searchInput, setSearchInput] = useState('');
@@ -22,7 +25,17 @@ const PostList = () => {
 
 
             <View style = {styles.postField}>
-
+                <FlatList data = {PostSource}
+                renderItem ={(obj) => {
+                    return(
+                        <Post
+                            nickName = {obj.item.nickName}
+                            content = {obj.item.content}
+                        />
+                    );
+                }}
+                keyExtractor={item => item.id.toString()}
+                />
             </View>
         </SafeAreaView>
     )
@@ -57,10 +70,12 @@ const styles = StyleSheet.create({
     inputField:{
         display:'flex',
         alignItems:'center',
+        marginBottom: 30,
     },
     postField:{
-        width:'92%',
-        position:'relative',
-        top:50,
+        width:'100%',
+        display:'flex',
+        alignItems:'center',
+        marginLeft:15,
     },
 })
