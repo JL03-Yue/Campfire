@@ -1,31 +1,57 @@
+import { useLinkProps } from '@react-navigation/native'
 import React, { Component, useState,useEffect } from 'react'
 import { SafeAreaView, View, Text, StyleSheet, FlatList, DeviceEventEmitter, Image, TextInput } from 'react-native'
 import Post from '../../component/post/postList'
 import PostSource from '../../component/post/postSource'
+import filter from 'lodash.filter';
 
 
 const PostList = () => {
     const [searchInput, setSearchInput] = useState('');
-    const[feed,setFeed] = ([])
+    const [feed,setFeed] = ([])
+    const [query, setQuery] = useState('');
+    const [filterdData, setfilterdData] = useState(PostSource);
+    const [masterData, setMasterData] = useState(PostSource);
+
+    const handleSearch = text=>{
+        if(text){
+                const newData = PostSource.filter((item) => {
+                const itemData = (item.content || item.nickName)? item.content:''
+                const textData = text;
+                return itemData.indexOf(textData) > -1;
+            });
+            setfilterdData (newData);
+            setSearchInput(text);
+        
+        }
+        else{
+            setfilterdData(masterData)
+            setSearchInput(text);
+        }
+    }
 
     useEffect(()=>{
         fetch
     },[]);
+
     return (
         <SafeAreaView style={styles.container}>
             <Text style = {styles.top}>Top</Text>
             <Text style={styles.title}>Forum</Text>
 
             <View style = {styles.inputField}>
-                <TextInput value={searchInput} onChangeText={(val) => setSearchInput(val)}
-                    placeholder={'Enter input here'} placeholderTextColor='#000' style={styles.input}>
+                <TextInput value={searchInput} onChangeText={(val) => handleSearch(val)}
+                    placeholder={'Enter input here'} placeholderTextColor='#000' style={styles.input}
+                    >
 
                 </TextInput>
             </View>
 
 
             <View style = {styles.postField}>
-                <FlatList data = {PostSource}
+                <FlatList 
+                data = {filterdData}
+
                 renderItem ={(obj) => {
                     return(
                         <Post
