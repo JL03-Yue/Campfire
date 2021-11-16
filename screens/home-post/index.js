@@ -1,6 +1,6 @@
 import { useLinkProps } from '@react-navigation/native'
 import React, { Component, useState,useEffect } from 'react'
-import { SafeAreaView, View, Text, StyleSheet, FlatList, DeviceEventEmitter, Image, TextInput } from 'react-native'
+import { SafeAreaView, View, Text, StyleSheet, FlatList, TouchableOpacity, TextInput } from 'react-native'
 import Post from '../../component/post/postList'
 import PostSource from '../../component/post/postSource'
 import filter from 'lodash.filter';
@@ -8,10 +8,22 @@ import filter from 'lodash.filter';
 
 const PostList = () => {
     const [searchInput, setSearchInput] = useState('');
-    const [feed,setFeed] = ([])
-    const [query, setQuery] = useState('');
     const [filterdData, setfilterdData] = useState(PostSource);
     const [masterData, setMasterData] = useState(PostSource);
+    const [liked, setLiked] = useState(false);
+
+    const changeLike = () =>{
+        if(liked == false)
+        {
+            setLiked(true);
+        }
+        else
+        {
+            setLiked(false);
+        }
+    }
+
+
 
     const handleSearch = text=>{
         if(text){
@@ -62,7 +74,10 @@ const PostList = () => {
                 }}
                 keyExtractor={item => item.id.toString()}
                 />
+                
             </View>
+
+
         </SafeAreaView>
     )
 }

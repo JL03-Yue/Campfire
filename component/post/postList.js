@@ -1,7 +1,25 @@
-import React from 'react';
-import { StyleSheet, Text, View, Image, SafeAreaView } from 'react-native';
+import React,{useState} from 'react';
+import { StyleSheet, Text, View, Image, SafeAreaView,TouchableOpacity } from 'react-native';
+import LikeButton from '../likeButton/index'
 
 function Post(props){
+
+    const [liked, setLiked] = useState(false);
+    const[likedIcon, setLikedIcon] = useState('🖤');
+
+    const handleLike = () =>{
+        if(liked)
+        {
+            setLiked(false);
+            setLikedIcon('🖤');
+        }
+        if(!liked)
+        {
+            setLiked(true);
+            setLikedIcon('♥️')
+        }
+    }
+
     return(
         <SafeAreaView style = {styles.container}>
             <View style = {styles.titleContainer}>
@@ -10,6 +28,11 @@ function Post(props){
             <View style = {styles.contentContainer}>
                 <Text style = {styles.postContent}>{props.content}</Text>
             </View>
+            <View style = {styles.like}>
+                <TouchableOpacity onPress = {handleLike}>
+                {likedIcon}
+                </TouchableOpacity>
+                </View>
 
         </SafeAreaView>
     );
@@ -31,6 +54,9 @@ const styles = StyleSheet.create({
     contentContainer:{
        paddingLeft: 5,
         paddingBottom:5,
+    },
+    like:{
+        paddingLeft:5,
     }
 })
 
