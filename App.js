@@ -3,6 +3,7 @@ import React,{Component} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import PostList from './screens/home-post';
 import WelcomeScreen from './screens/welcome/index'
+import NewPostScreen from './screens/new-post/index'
 //import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 //import { NavigationContainer } from '@react-navigation/native';
 
@@ -26,7 +27,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       
-      <PostList/>
+      <NewPostScreen/>
       <StatusBar style="auto" />
     </View>
   );

@@ -40,7 +40,7 @@ function Post(props){
 
 const styles = StyleSheet.create({
     container:{
-        width:'90%',
+        width:'100%',
         borderWidth:1,
         marginVertical:3,
     },
