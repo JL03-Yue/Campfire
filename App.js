@@ -1,35 +1,45 @@
-import { StatusBar } from 'expo-status-bar';
-import React,{Component} from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import PostList from './screens/home-post';
+import React, { Component } from 'react';
+import { StyleSheet, Text, View,Button,TouchableOpacity} from 'react-native';
+import PostHome from './screens/home-post';
 import WelcomeScreen from './screens/welcome/index'
 import NewPostScreen from './screens/new-post/index'
-//import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-//import { NavigationContainer } from '@react-navigation/native';
 
-//const Tab = createMaterialBottomTabNavigator();
-/*
-class App extends Component{
-  render(){
-    return(
-      <NavigationContainer>
-        <Tab.Navigator initialRouteName = "Post">
-          <Tab.screen name = "Post" component = {PostScreen}/>
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { useNavigation, CommonActions } from '@react-navigation/native';
 
-        </Tab.Navigator>
-      </NavigationContainer>
-    )
-  }
-}
-export default App
-*/
+
+
+const Stack = createStackNavigator();
+
+
 export default function App() {
+  
+
+
   return (
-    <View style={styles.container}>
-      
-      <NewPostScreen/>
-      <StatusBar style="auto" />
-    </View>
+
+      <NavigationContainer>
+        <Stack.Navigator
+          initialRouteName="Camp Post">
+
+          <Stack.Screen name="Camp Post"
+            component={PostHome}
+            options={({navigation}) => ({
+              headerTintColor: 'white',
+              headerStyle: { backgroundColor: 'black' },
+              headerRight: () => ( 
+                <TouchableOpacity style = {styles.newPostButton} onPress={() =>navigation.navigate('NewPost')}>
+                  <Text style = {styles.newPostButtonText}>✏️</Text>
+                </TouchableOpacity>
+              ),
+            })}
+          />
+          <Stack.Screen name="NewPost" component={NewPostScreen} />
+
+        </Stack.Navigator>
+      </NavigationContainer>
+
   );
 }
 
@@ -39,5 +49,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  newPostButton:{
+    marginRight:15,
+    
+  },
+  newPostButtonText:{
+    fontSize:30,
   },
 });

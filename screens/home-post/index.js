@@ -49,8 +49,8 @@ const PostList = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <Text style = {styles.top}>Top</Text>
-            <Text style={styles.title}>Forum</Text>
+            {/* <Text style = {styles.top}>Top</Text> */}
+            {/* <Text style={styles.title}>Forum</Text> */}
 
             <View style = {styles.inputField}>
                 <TextInput value={searchInput} onChangeText={(val) => handleSearch(val)}
@@ -126,13 +126,13 @@ const styles = StyleSheet.create({
         height: 39,
         borderWidth:1,
         paddingLeft:10,
-
         
     },
     inputField:{
         display:'flex',
         alignItems:'center',
         marginBottom: 30,
+        margintop:100,
     },
     middleContainer:{
         display:'flex',

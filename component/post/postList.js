@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import { StyleSheet, Text, View, Image, SafeAreaView,TouchableOpacity } from 'react-native';
 import LikeButton from '../likeButton/index'
 
-function Post(props){
+function Post(props,{ navigation }){
 
     const [liked, setLiked] = useState(false);
     const[likedIcon, setLikedIcon] = useState('🖤');

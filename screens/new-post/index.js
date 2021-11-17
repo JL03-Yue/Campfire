@@ -6,9 +6,10 @@ function NewPost() {
     const [content, setContent] = useState('');
     return (
         <SafeAreaView style={styles.container}>
-
+            <Text style = {styles.top}>Top</Text>
 
             <View style={styles.formContainer}>
+                
                 <View styles={styles.titleContainer}>
                     <Text styles={styles.title}>Create a New Post</Text>
                 </View>
@@ -45,6 +46,11 @@ const styles = StyleSheet.create({
     container: {
         width: '90%',
         marginVertical: 3,
+    },
+    top:{
+        backgroundColor:'#000',
+        height:30,
+
     },
     title: {
         fontSize: 20,
